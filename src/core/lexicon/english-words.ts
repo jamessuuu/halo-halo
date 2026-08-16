@@ -35,6 +35,7 @@ export const ENGLISH_ROOTS: ReadonlySet<string> = new Set([
   "type",
   "send",
   "log",
+  "grab", // common Taglish loanword (ride-hailing sense), lowercase and not brand-referring — contrast against gazetteer.ts's capitalized "Grab" (NE)
   "atm",
   "internet",
   "computer",

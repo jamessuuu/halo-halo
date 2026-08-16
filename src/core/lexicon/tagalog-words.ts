@@ -32,11 +32,15 @@ export const CLOSED_FUNCTION_WORDS: ReadonlySet<string> = new Set([
   "kung",
   "dahil",
   "para",
+  "kasi",
+  "pero",
   "may",
+  "mayroon",
   "wala",
   "yan",
   "ito",
   "iyon",
+  "iyan",
   "ako",
   "ikaw",
   "ka",
@@ -52,6 +56,11 @@ export const CLOSED_FUNCTION_WORDS: ReadonlySet<string> = new Set([
   "natin",
   "ninyo",
   "nila",
+  "kanya",
+  "akin",
+  "iyo",
+  "atin",
+  "kanila",
   "hindi",
   "oo",
   "opo",
@@ -59,6 +68,14 @@ export const CLOSED_FUNCTION_WORDS: ReadonlySet<string> = new Set([
   "diyan",
   "dito",
   "doon",
+  // Common time/deictic adverbs — closed-class enough in practice that a
+  // small curated set covers the great majority of casual-register usage.
+  "bukas",
+  "kahapon",
+  "kanina",
+  "ngayon",
+  "mamaya",
+  "araw-araw",
 ]);
 
 /**
@@ -80,16 +97,66 @@ export const OPEN_ROOTS: ReadonlySet<string> = new Set([
   // silent gap (see docs/limitations).
   "butih",
   "bahay", // row 17
-  "saya", // grabe ang saya (row 13's example sentence)
+  "saya", // grabe ang saya (row 13's example sentence) — also lets "masaya" resolve via ma- backout
   "kain",
 ]);
 
 /**
  * Standalone whole-word Tagalog lexical items not decomposed by Tier 2 at
  * all (no affix pattern applies; looked up directly). "grabe" is the row 13
- * contrast case against "hahaha" (row 14, OTHER paralinguistic).
+ * contrast case against "hahaha" (row 14, OTHER paralinguistic). Expanded
+ * past the worked-example minimum with common, everyday, casual-register
+ * vocabulary (curated by the bilingual author, James — a native speaker,
+ * per the Linguistic Spec's own framing) so ordinary Taglish sentences
+ * don't fall to AMBIGUOUS just from thin coverage. Still deliberately not
+ * exhaustive — /limitations names the recall gap this implies.
  */
-export const WHOLE_WORDS: ReadonlySet<string> = new Set(["grabe", "yata", "lang", "talaga", "sige"]);
+export const WHOLE_WORDS: ReadonlySet<string> = new Set([
+  "grabe",
+  "yata",
+  "lang",
+  "talaga",
+  "sige",
+  "papunta",
+  "pumunta",
+  "punta",
+  "trabaho",
+  "pamilya",
+  "kaibigan",
+  "gusto",
+  "ayaw",
+  "pwede",
+  "dapat",
+  "siguro",
+  "tapos",
+  "alam",
+  "tao",
+  "oras",
+  "pera",
+  "salamat",
+  "ingat",
+  "tulog",
+  "kanta",
+  "laro",
+  "aral",
+  "presyo",
+  "bayad",
+  "libre",
+  "mahal",
+  "mura",
+  "bago",
+  "luma",
+  "mabuti",
+  "masama",
+  "araw",
+  "gabi",
+  "umaga",
+  "hapon",
+  "linggo",
+  "buwan",
+  "taon",
+  "sabi",
+]);
 
 /** OPEN_ROOTS union WHOLE_WORDS — recognized as a standalone Tagalog word. */
 export const TAGALOG_STANDALONE: ReadonlySet<string> = new Set([...OPEN_ROOTS, ...WHOLE_WORDS]);

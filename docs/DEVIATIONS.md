@@ -83,6 +83,33 @@ order (`typecheck`, `lint`, `test`, `build`, `e2e:smoke`, `ci:zero-functions`).
    top level of `defineConfig`, which was already correctly set. Fixed by removing the
    redundant/invalid nested `resolve` inside `test`.
 
+## M3 — brand generated early, `ci:zero-functions` intentionally red until M4/M5 land the remaining routes
+
+`pnpm brand` was run during M3, not M5 (its nominal milestone slot in
+`docs/halo-halo-SPEC.md`), so every milestone from here on can run the FULL verification
+gate green rather than carrying a known-red check across milestones. `scripts/brand.mjs`
+already had halo-halo's glyph fully drawn in the salvaged M0 scaffold; generating it
+early costs nothing and `pnpm ci:brand-check` (drift detection) still runs at M5 to
+confirm no drift before the milestone is marked done there too.
+
+`pnpm ci:zero-functions` fails at M3 — this IS expected, not a slipped gate:
+`scripts/assert-zero-functions.mjs` asserts `out/method.html`, `out/eval.html`,
+`out/annotate.html`, and `out/limitations.html` all exist (the full Surfaces route list
+from `docs/halo-halo-SPEC.md`). Those four pages are explicitly M4 (`/annotate`) and M5
+(`/method`, `/eval`, `/limitations`) work, not M3's ("demo UI"). `pnpm typecheck` /
+`pnpm lint` / `pnpm test` / `pnpm build` / `pnpm e2e:smoke` are all green at M3; only
+`ci:zero-functions`'s route-existence checks are red, and only for the four routes not
+yet built — documented here rather than silently skipped or falsely claimed green.
+
+Also found and fixed during M3: a real port collision on the shared-machine default
+Playwright port (4173) — verified live via `netstat -ano`, which showed another local
+project's node process already LISTENING there. With `reuseExistingServer: true`,
+Playwright silently drove that OTHER project's page instead of halo-halo's (its `<h1>`
+read "See exactly what the model heard," not "halo-halo"). Fixed by moving
+`playwright.config.ts` to a project-specific port (4197) rather than assuming ownership
+of another session's process — see the comment in `playwright.config.ts` for the full
+finding.
+
 ## M2 — `eval/fixtures/self-retest-subset.jsonl` deferred, not fabricated
 
 `docs/batch2-linguistic-spec.md` Section 8.3 lists `eval/fixtures/self-retest-subset.jsonl`
