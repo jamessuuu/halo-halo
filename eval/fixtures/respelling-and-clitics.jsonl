@@ -1,0 +1,5 @@
+{"id": "row-4", "input": "dyan", "source": "batch2-linguistic-spec.md#2.3 row 4", "leaves": [{"text": "dyan", "tag": "TAG", "confidence": "HIGH"}]}
+{"id": "row-5", "input": "jan", "source": "batch2-linguistic-spec.md#2.3 row 5 (lowercase, particle position)", "leaves": [{"text": "jan", "tag": "TAG", "confidence": "LOW"}]}
+{"id": "row-16-free-ng", "input": "pag-order ng food", "source": "batch2-linguistic-spec.md#2.3 row 16 (free-standing \"ng\", its own token, no MWT needed)", "leaves": [{"text": "pag-", "tag": "TAG"}, {"text": "order", "tag": "ENG"}, {"text": "ng", "tag": "TAG"}, {"text": "food", "tag": "ENG"}]}
+{"id": "row-17-bound-ng", "input": "magandang bahay", "source": "batch2-linguistic-spec.md#2.3 row 17 (bound -ng linker, MWT-split; pure-Tagalog sanity check)", "leaves": [{"text": "maganda", "tag": "TAG"}, {"text": "ng", "tag": "TAG"}, {"text": "bahay", "tag": "TAG"}]}
+{"id": "row-20", "input": "kain na tayo", "source": "batch2-linguistic-spec.md#2.3 row 20 (na/pa/ba/naman already their own orthographic words)", "leaves": [{"text": "kain", "tag": "TAG"}, {"text": "na", "tag": "TAG"}, {"text": "tayo", "tag": "TAG"}]}

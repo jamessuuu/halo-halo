@@ -1,0 +1,3 @@
+{"id": "row-12", "input": "gets", "source": "batch2-linguistic-spec.md#2.3 row 12 (English-root-nativized, functions as a native Tagalog verb root)", "leaves": [{"text": "gets", "tag": "AMBIGUOUS", "confidence": "LOW"}]}
+{"id": "row-13", "input": "grabe", "source": "batch2-linguistic-spec.md#2.3 row 13 (real Tagalog lexical item, contrast against row 14)", "leaves": [{"text": "grabe", "tag": "TAG"}]}
+{"id": "row-14", "input": "hahaha", "source": "batch2-linguistic-spec.md#2.3 row 14 (paralinguistic laughter marker, no fact of the matter about its language)", "leaves": [{"text": "hahaha", "tag": "OTHER"}]}

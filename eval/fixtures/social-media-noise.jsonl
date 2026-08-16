@@ -1,0 +1,5 @@
+{"id": "row-10", "input": "❤️", "source": "batch2-linguistic-spec.md#2.3 row 10 (base + variation selector, two code points, one UAX #29 grapheme cluster)", "leaves": [{"text": "❤️", "tag": "OTHER"}], "graphemeLength": 1}
+{"id": "row-11", "input": "bit.ly/abc123", "source": "batch2-linguistic-spec.md#2.3 row 11 (bare shortlink URL, no scheme)", "leaves": [{"text": "bit.ly/abc123", "tag": "OTHER"}]}
+{"id": "row-18", "input": "#OOTD", "source": "batch2-linguistic-spec.md#2.3 row 18 (hashtag, one Tier-0 span, not internally segmented — explicit v1 non-goal)", "leaves": [{"text": "#OOTD", "tag": "OTHER"}]}
+{"id": "row-8", "input": "365", "source": "batch2-linguistic-spec.md#2.3 row 8 (bare numeral)", "leaves": [{"text": "365", "tag": "OTHER"}]}
+{"id": "row-9", "input": "i-2x", "source": "batch2-linguistic-spec.md#2.3 row 9 (a Tier-2 root slot is not always TAG/ENG)", "leaves": [{"text": "i-", "tag": "TAG"}, {"text": "2x", "tag": "OTHER"}]}

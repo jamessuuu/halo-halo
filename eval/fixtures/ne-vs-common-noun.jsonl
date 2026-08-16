@@ -1,0 +1,5 @@
+{"id": "row-6", "input": "Jollibee", "source": "batch2-linguistic-spec.md#2.3 row 6", "leaves": [{"text": "Jollibee", "tag": "NE"}]}
+{"id": "row-7", "input": "GCash", "source": "batch2-linguistic-spec.md#2.3 row 7 (portmanteau brand; Tier 2 never attempts an affix split on it)", "leaves": [{"text": "GCash", "tag": "NE"}]}
+{"id": "row-19", "input": "ATM", "source": "batch2-linguistic-spec.md#2.3 row 19 (class noun, not a specific named entity)", "leaves": [{"text": "ATM", "tag": "ENG"}]}
+{"id": "row-5-name", "input": "Jan", "source": "batch2-linguistic-spec.md#2.3 row 5 (capitalized, name slot — contrast against lowercase \"jan\")", "leaves": [{"text": "Jan", "tag": "NE"}]}
+{"id": "row-5-particle", "input": "jan", "source": "batch2-linguistic-spec.md#2.3 row 5 (lowercase, particle position — contrast against capitalized \"Jan\")", "leaves": [{"text": "jan", "tag": "TAG", "confidence": "LOW"}]}

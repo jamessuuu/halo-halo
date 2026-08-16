@@ -83,6 +83,22 @@ order (`typecheck`, `lint`, `test`, `build`, `e2e:smoke`, `ci:zero-functions`).
    top level of `defineConfig`, which was already correctly set. Fixed by removing the
    redundant/invalid nested `resolve` inside `test`.
 
+## M2 — `eval/fixtures/self-retest-subset.jsonl` deferred, not fabricated
+
+`docs/batch2-linguistic-spec.md` Section 8.3 lists `eval/fixtures/self-retest-subset.jsonl`
+(pass-1 label, pass-2 label, per-item confidence, timestamp of each pass) as part of the
+committed fixture set. This file is **not created in M2** because its content is, by
+definition, the output of an actual human self-test-retest annotation pass — and per
+`docs/halo-halo-SPEC.md`'s honesty protocol, this build ships only a machine-drafted v0
+set (rule output + agent review), explicitly NOT gold, with the human annotation pass
+named as the next step, not something this build performs on James's behalf. Writing
+placeholder or synthetic rows into this file would fabricate the exact kind of
+single-annotator evidence Section 4 exists to keep honest. Instead: the annotation
+workbench (M4, `/annotate`) is built with a blind-shuffle retest mode whose export
+format IS this file's schema, so a real human pass — whenever James runs it — produces
+this file directly, correctly dated and versioned. No kappa is published anywhere in
+this build; `docs/limitations` states this explicitly.
+
 ## M1 — narrowed scope, disclosed rather than silently cut
 
 - **`-ng` linker recognition is gated on the stem resolving through the curated
