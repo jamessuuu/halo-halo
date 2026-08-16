@@ -83,6 +83,22 @@ order (`typecheck`, `lint`, `test`, `build`, `e2e:smoke`, `ci:zero-functions`).
    top level of `defineConfig`, which was already correctly set. Fixed by removing the
    redundant/invalid nested `resolve` inside `test`.
 
+## M5 — CI workflow written and verified locally, not verified live on GitHub Actions
+
+`.github/workflows/ci.yml` mirrors the sibling showcase projects' pattern (typecheck ->
+lint -> unit -> build -> e2e:smoke against the real static export -> zero-functions ->
+brand drift -> eval drift). Every step it runs was ALSO run locally this session with
+green results (pasted into the milestone reports and README). What was NOT done: an
+actual push to GitHub and a live check that the workflow goes green on Actions itself.
+That is by explicit instruction for this build ("Local commits per milestone... NO
+push, NO deploy, NO publishing") and matches BATCH-2-STANDARDS.md's own build-
+discipline note that publication-time verification (push, confirm Actions green,
+confirm the deployed artifact) is a LATER, separate step from the build itself
+("local green is not CI green" — swage regression, cited in that file — is about not
+CONFUSING the two, not about running the publish step early). Whoever runs the
+publication batch for this project must still perform that live-Actions verification;
+it is explicitly not claimed done here.
+
 ## M4 — a real tier2.ts bug found while building eval/v0-set/, fixed at the root
 
 Composing eval/v0-set/'s 16 original Taglish texts and running them through the live
