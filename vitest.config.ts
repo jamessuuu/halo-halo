@@ -10,7 +10,6 @@ const alias = { "@": path.join(rootDir, "src") };
 export default defineConfig({
   resolve: { alias },
   test: {
-    resolve: { alias },
     environment: "node",
     include: ["src/**/*.test.ts", "scripts/**/*.test.ts"],
   },

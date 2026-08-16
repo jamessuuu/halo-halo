@@ -29,7 +29,7 @@ export default defineConfig({
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
     {
       name: "mobile-320",
-      use: { viewport: { width: 320, height: 640 }, ...devices["Desktop Chrome"] },
+      use: { ...devices["Desktop Chrome"], viewport: { width: 320, height: 640 } },
     },
   ],
 });
