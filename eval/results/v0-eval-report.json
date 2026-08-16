@@ -1,0 +1,332 @@
+{
+  "provenance": {
+    "annotator": "draft-automated",
+    "honestyNote": "\"predicted\" = live src/core/segmenter.ts output at report-generation time. \"reviewed\" (this report's reference for these numbers) = the machine-drafted v0-set label, confirmed-or-corrected once by the builder during eval/v0-set/ construction (eval/v0-set/reviewed-overrides.json holds only the divergent items). This is NOT the single-annotator human self-test-retest protocol docs/batch2-linguistic-spec.md Section 4 defines, and no such pass has run yet (docs/DEVIATIONS.md). These numbers measure whether the CURRENT code reproduces its own reviewed v0-set labels — a regression/consistency check, not an accuracy claim against independent gold, and not inter-annotator agreement. Single-annotator v0, seeking co-annotators."
+  },
+  "source": {
+    "textCount": 16,
+    "leafCount": 438,
+    "overridesApplied": 1
+  },
+  "boundaryF1": {
+    "precision": 1,
+    "recall": 0.9789473684210527,
+    "f1": 0.9893617021276596,
+    "n": 95,
+    "truePositive": 93,
+    "falsePositive": 0,
+    "falseNegative": 2,
+    "classImbalanceCaveat": "High variance at small n (docs/batch2-linguistic-spec.md Section 5.2) — a single missed or extra boundary swings this number by several points at this sample size. Does not say WHICH label was wrong on either side of a correctly-placed boundary."
+  },
+  "perLabelAccuracy": [
+    {
+      "tag": "TAG",
+      "support": 317,
+      "accuracy": 1
+    },
+    {
+      "tag": "ENG",
+      "support": 56,
+      "accuracy": 0.9821428571428571
+    },
+    {
+      "tag": "MIXED",
+      "support": 3,
+      "accuracy": 1
+    },
+    {
+      "tag": "NE",
+      "support": 5,
+      "accuracy": 1
+    },
+    {
+      "tag": "OTHER",
+      "support": 56,
+      "accuracy": 1
+    },
+    {
+      "tag": "AMBIGUOUS",
+      "support": 1,
+      "accuracy": 1
+    }
+  ],
+  "perLabelAccuracyCaveat": "Per-label, never pooled (Section 5.1) — a trivial always-predict-majority-label baseline would score high pooled accuracy while being useless at the rare classes (MIXED, AMBIGUOUS, NE) this project exists to surface.",
+  "confusionMatrix": {
+    "TAG": {
+      "TAG": 317,
+      "ENG": 0,
+      "MIXED": 0,
+      "NE": 0,
+      "OTHER": 0,
+      "AMBIGUOUS": 0
+    },
+    "ENG": {
+      "TAG": 0,
+      "ENG": 55,
+      "MIXED": 0,
+      "NE": 0,
+      "OTHER": 0,
+      "AMBIGUOUS": 1
+    },
+    "MIXED": {
+      "TAG": 0,
+      "ENG": 0,
+      "MIXED": 3,
+      "NE": 0,
+      "OTHER": 0,
+      "AMBIGUOUS": 0
+    },
+    "NE": {
+      "TAG": 0,
+      "ENG": 0,
+      "MIXED": 0,
+      "NE": 5,
+      "OTHER": 0,
+      "AMBIGUOUS": 0
+    },
+    "OTHER": {
+      "TAG": 0,
+      "ENG": 0,
+      "MIXED": 0,
+      "NE": 0,
+      "OTHER": 56,
+      "AMBIGUOUS": 0
+    },
+    "AMBIGUOUS": {
+      "TAG": 0,
+      "ENG": 0,
+      "MIXED": 0,
+      "NE": 0,
+      "OTHER": 0,
+      "AMBIGUOUS": 1
+    }
+  },
+  "kappa": null,
+  "kappaNote": "Not available. Self-test-retest kappa requires two independent annotation passes over blind-shuffled items (docs/batch2-linguistic-spec.md Section 4.1) — that is what the annotation workbench (/annotate) is for, and no human pass has run yet. No kappa number is fabricated or estimated here.",
+  "perText": [
+    {
+      "id": "v0-001",
+      "register": "group-chat",
+      "leafCount": 21,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 7,
+        "truePositive": 7,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-002",
+      "register": "social-caption",
+      "leafCount": 25,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 6,
+        "truePositive": 6,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-003",
+      "register": "comment-reply",
+      "leafCount": 26,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 2,
+        "truePositive": 2,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-004",
+      "register": "workplace-chat",
+      "leafCount": 31,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 8,
+        "truePositive": 8,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-005",
+      "register": "family-group",
+      "leafCount": 24,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 0,
+        "truePositive": 0,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-006",
+      "register": "gaming-chat",
+      "leafCount": 24,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 9,
+        "truePositive": 9,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-007",
+      "register": "food-review",
+      "leafCount": 34,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 9,
+        "truePositive": 9,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-008",
+      "register": "relationship-advice",
+      "leafCount": 29,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 4,
+        "truePositive": 4,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-009",
+      "register": "weather-plans",
+      "leafCount": 27,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 2,
+        "truePositive": 2,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-010",
+      "register": "tech-support",
+      "leafCount": 29,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 0.7777777777777778,
+        "f1": 0.8750000000000001,
+        "n": 9,
+        "truePositive": 7,
+        "falsePositive": 0,
+        "falseNegative": 2
+      }
+    },
+    {
+      "id": "v0-011",
+      "register": "study-group",
+      "leafCount": 27,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 5,
+        "truePositive": 5,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-012",
+      "register": "marketplace-selling",
+      "leafCount": 33,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 7,
+        "truePositive": 7,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-013",
+      "register": "customer-service-chat",
+      "leafCount": 28,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 5,
+        "truePositive": 5,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-014",
+      "register": "sports-commentary-chat",
+      "leafCount": 27,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 8,
+        "truePositive": 8,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-015",
+      "register": "exam-prep-reminder",
+      "leafCount": 24,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 8,
+        "truePositive": 8,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    },
+    {
+      "id": "v0-016",
+      "register": "event-invitation",
+      "leafCount": 29,
+      "boundaryF1": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "n": 6,
+        "truePositive": 6,
+        "falsePositive": 0,
+        "falseNegative": 0
+      }
+    }
+  ]
+}

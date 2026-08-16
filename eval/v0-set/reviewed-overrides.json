@@ -1,0 +1,9 @@
+[
+  {
+    "textId": "v0-010",
+    "leafText": "crash",
+    "reviewedTag": "ENG",
+    "reviewedConfidence": "MEDIUM",
+    "reviewNote": "\"crash\" (software sense, \"nag-crash ang phone\") is a clearly-established English loanword in casual Filipino tech-support register, but is deliberately absent from src/core/lexicon/english-words.ts (kept as the disclosed out-of-vocabulary example — see docs/limitations and eval/fixtures/core-affixation.jsonl's \"nag-vlog\" fixture). The rule engine correctly and honestly defaults its root slot to AMBIGUOUS/LOW per Section 6's design rather than guessing ENG; this override records the builder's review judgment (ENG, MEDIUM — not HIGH, since it is genuinely a borderline recent loanword) as the v0-set's reference label for THIS item, so the eval harness has a real, disclosed point of divergence to measure rather than a trivially perfect self-comparison."
+  }
+]

@@ -104,11 +104,20 @@ interface PrefixCandidate {
   root: string;
 }
 
+// A root shorter than this is never linguistically plausible as a real
+// lexical root in either language — found empirically while building
+// eval/v0-set/: the common particle "rin" ("too/also") was matching the
+// standalone "-in" suffix, leaving a one-letter "root" ("r"). Rather than
+// only patching that one word into the closed-function-word list (which
+// would still leave the underlying bug live for the next short word), this
+// guard rejects any candidate split whose root is that degenerate.
+const MIN_ROOT_LENGTH = 2;
+
 function prefixCandidates(lower: string): PrefixCandidate[] {
   const out: PrefixCandidate[] = [];
   for (const p of PREFIXES) {
     const consumed = matchAtStart(lower, p.form);
-    if (consumed !== null && lower.length > consumed) {
+    if (consumed !== null && lower.length - consumed >= MIN_ROOT_LENGTH) {
       out.push({ form: p.form, consumed, root: lower.slice(consumed) });
     }
   }
@@ -145,7 +154,7 @@ function circumfixCandidates(lower: string): CircumfixCandidate[] {
     const prefixConsumed = matchAtStart(lower, cf.prefix);
     const suffixConsumed = matchAtEnd(lower, cf.suffix);
     if (prefixConsumed === null || suffixConsumed === null) continue;
-    if (lower.length <= prefixConsumed + suffixConsumed) continue;
+    if (lower.length - (prefixConsumed + suffixConsumed) < MIN_ROOT_LENGTH) continue;
     out.push({
       prefix: cf.prefix,
       suffix: cf.suffix,
@@ -179,7 +188,7 @@ function suffixCandidates(lower: string): SuffixCandidate[] {
   const out: SuffixCandidate[] = [];
   for (const s of SUFFIXES) {
     const consumed = matchAtEnd(lower, s.form);
-    if (consumed !== null && lower.length > consumed) {
+    if (consumed !== null && lower.length - consumed >= MIN_ROOT_LENGTH) {
       out.push({ form: s.form, consumed, root: lower.slice(0, lower.length - consumed) });
     }
   }

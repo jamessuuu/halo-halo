@@ -59,6 +59,7 @@ export const CLOSED_FUNCTION_WORDS: ReadonlySet<string> = new Set([
   "kanya",
   "akin",
   "iyo",
+  "inyo", // distinct from "iyo" ("yours") — found missing while building eval/v0-set/: "inyo" was falling through to Tier 2's "i-" prefix matcher (a spurious match on a monomorphemic pronoun, root "nyo" unrecognized), the same class of false-positive candidate-matching risk "maganda" already guards against, just for a word too short to have a recognized-root candidate to prefer instead. Listed here so it resolves before Tier 2 is ever attempted, same fix pattern as "ikaw" already sidesteps.
   "atin",
   "kanila",
   "hindi",
@@ -68,14 +69,42 @@ export const CLOSED_FUNCTION_WORDS: ReadonlySet<string> = new Set([
   "diyan",
   "dito",
   "doon",
+  "ni",
   // Common time/deictic adverbs — closed-class enough in practice that a
   // small curated set covers the great majority of casual-register usage.
   "bukas",
   "kahapon",
   "kanina",
   "ngayon",
+  "ngayong", // ngayon + the -ng linker, with the host's final -n eliding into the linker (a distinct, disclosed allomorphy pattern from the vowel-final -ng case tier2.ts's linker rule already handles — listed as its own closed-word entry rather than generalizing the rule)
   "mamaya",
   "araw-araw",
+  // Question words — closed-class.
+  "bakit",
+  "paano",
+  "saan",
+  "sino",
+  "ano",
+  "alin",
+  "gaano",
+  "kailan",
+  "magkano",
+  // High-frequency casual-register particles/determiners found missing
+  // while building eval/v0-set/ against real sentences (not just the
+  // worked-example minimum): "rin"/"din" ("too/also") were the words that
+  // surfaced tier2.ts's minimum-root-length bug (see its own comment) —
+  // listed here as closed function words on their own merits regardless,
+  // since that is what they linguistically are.
+  "rin",
+  "din",
+  "yung",
+  "niyo",
+  "kay",
+  "kagabi",
+  "kaya",
+  "baka",
+  "pag",
+  "o",
 ]);
 
 /**
@@ -99,6 +128,9 @@ export const OPEN_ROOTS: ReadonlySet<string> = new Set([
   "bahay", // row 17
   "saya", // grabe ang saya (row 13's example sentence) — also lets "masaya" resolve via ma- backout
   "kain",
+  "haba", // mahaba = ma- + haba ("length")
+  "tagal", // matagal = ma- + tagal ("duration")
+  "buo", // buong = buo + -ng linker ("whole")
 ]);
 
 /**
@@ -156,6 +188,36 @@ export const WHOLE_WORDS: ReadonlySet<string> = new Set([
   "buwan",
   "taon",
   "sabi",
+  "isip",
+  "dala",
+  "bata",
+  "tulong",
+  "maaga",
+  "malabo",
+  "sarap",
+  "usap",
+  "hirap",
+  "hintay",
+  "isa",
+  "marami", // lexicalized as a whole word (not a live ma-+"rami" split) — "maraming" is this + the -ng linker
+  "medyo",
+  "sana",
+  "husto",
+  "ayun",
+  "ulit",
+  "problema",
+  "gamit",
+  "sara", // magsara = mag- + sara ("close")
+  "alis",
+  "umulan", // um- is not in the Section 1 affix list (only nag-/mag-/na-/ma-/i-/ipag-/pag-), so this vowel-initial actor-focus form is listed whole rather than mis-split
+  "payong", // "umbrella" — a distinct lexeme from "payo" ("advice"); listed whole so it resolves at the whole-word step and never risks a false payo+"-ng"-linker split
+  "kailangan", // lexicalized as its own word (need/necessary) — NOT a live ka-+ilang+-an circumfix split (the archaic root "ilang" is not productive in modern usage); listed whole so it resolves before circumfix-matching is ever attempted
+  "dating", // used here as a bare noun ("your arrival"), not a derived form
+  "tanong",
+  "nangyari", // lexicalized ("happened") rather than a live na-+yari derivation
+  "sali",
+  "ate", // kinship term ("older sister") — the far more common Taglish sense; a deliberate, disclosed simplification against the rarer collision with English "ate" (past tense of eat)
+  "kasama",
 ]);
 
 /** OPEN_ROOTS union WHOLE_WORDS — recognized as a standalone Tagalog word. */

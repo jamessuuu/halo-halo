@@ -83,6 +83,91 @@ order (`typecheck`, `lint`, `test`, `build`, `e2e:smoke`, `ci:zero-functions`).
    top level of `defineConfig`, which was already correctly set. Fixed by removing the
    redundant/invalid nested `resolve` inside `test`.
 
+## M4 — a real tier2.ts bug found while building eval/v0-set/, fixed at the root
+
+Composing eval/v0-set/'s 16 original Taglish texts and running them through the live
+segmenter (not just the 20 worked-example fixtures) surfaced a genuine bug:
+`src/core/tier2.ts`'s suffix matcher had no minimum root-length guard, so the common
+particle "rin" ("too/also") matched the standalone `-in` suffix and left a ONE-LETTER
+"root" ("r"). Same mechanism hit "din". Fixed at the root with a `MIN_ROOT_LENGTH = 2`
+guard applied to all three candidate generators (prefix/circumfix/suffix) in
+`tier2.ts`, not by special-casing "rin"/"din" alone (which would have left the
+underlying bug live for the next short word) — see the code comment there for the
+full finding. "rin"/"din" were ALSO added to `CLOSED_FUNCTION_WORDS` on their own
+merits regardless (they are genuinely closed-class particles).
+
+A second, related bug: "inyo" (a monomorphemic plural-you pronoun) was being
+mis-analyzed as `i-` (the object-focus prefix) + an unrecognized root "nyo" — a
+spurious candidate match on a word that happens to start with the single-character
+prefix "i-", the same class of false-positive risk the existing "maganda" vs "ma-anda"
+guard (Section 1's implementation-order hazard) already exists to prevent, just for a
+word too short to have a *recognized* root candidate available to prefer instead.
+Fixed by adding "inyo" to `CLOSED_FUNCTION_WORDS` (the same fix pattern already used
+for "ikaw"), not by weakening the general prefix/root-recognition logic — doing that
+would have broken the deliberate `eval/fixtures/core-affixation.jsonl` OOV-disclosure
+fixture ("nag-vlog"), which specifically NEEDS an unrecognized-root split to still
+happen so the recall gap is visible, not silently suppressed.
+
+The Tagalog wordlist (`src/core/lexicon/tagalog-words.ts`) and English wordlist
+(`english-words.ts`) were both substantially expanded past the worked-example minimum
+during this process — common, high-frequency, everyday vocabulary (question words,
+kinship terms, time adverbs, common English loanwords) that ordinary Taglish sentences
+use constantly but the worked-example table never happened to name. Several
+Tagalog surface forms hit two disclosed, out-of-general-scope simplifications rather
+than being force-fit: (1) morphophonological epenthesis (buti+an -> butihan) is
+modeled only as an alternate listed root form for words this project actually uses,
+not a general rule; (2) CV-reduplication (contemplated/future-aspect verbs like
+"naglalaro") is an explicit v1 non-goal (Section 1) — rather than fight it repeatedly
+across the v0-set, most of those sentences were rephrased to avoid reduplicated verb
+forms, keeping the eval set demonstrating the project's actual claimed strength
+(intra-word affix+root switching) instead of its already-disclosed weakest point.
+The ONE deliberate exception is `crash` in v0-010 ("nag-crash"), kept unfixed and
+recorded as a reviewed override in `eval/v0-set/reviewed-overrides.json` specifically
+so the shipped eval numbers have a real, disclosed point of divergence to show,
+instead of a suspiciously perfect 100%/1.0 that would just mean "graded against
+itself."
+
+A THIRD bug, this one in the metrics code, not the segmenter: `src/core/metrics/
+boundary-f1.ts`'s vacuous-case handling for precision/recall (zero predicted or zero
+gold switch points) conflated the two — the first implementation made precision
+depend on whether gold was also empty, and recall depend on whether predictions were
+also empty. That is not how precision/recall are defined (precision is about
+predictions only; recall is about gold only); the bug was caught immediately by this
+same file's own synthetic-known-answer tests failing, and fixed before any other code
+depended on the wrong values. See the corrected code comment in `boundary-f1.ts`.
+
+## M4 — the eval harness measures regression against a reviewed v0-set, not accuracy against gold
+
+`scripts/gen-eval-report.ts` compares the LIVE segmenter's output against
+`eval/v0-set/`'s "reviewed" labels (machine-drafted, confirmed-or-corrected once by
+the builder — `eval/v0-set/reviewed-overrides.json` holds only the divergent items).
+This is deliberately NOT presented as accuracy against independent gold, and no kappa
+number is computed or published from it — `docs/batch2-linguistic-spec.md` Section 4
+requires kappa to come from two independent annotation passes over blind-shuffled
+items (exactly what `/annotate`'s retest mode produces), and that human pass has not
+run (see the M2 entry above). The report's own `provenance.honestyNote` field states
+this explicitly, and `/eval` (M5) surfaces the same framing, not just the raw numbers.
+
+## M4 — react-hooks v7's `set-state-in-effect` rule and the annotation workbench
+
+`eslint-plugin-react-hooks@^7` (already in package.json) flags `setState` calls
+inside `useEffect` bodies as a cascading-render risk. Two legitimate uses in
+`src/app/annotate/page.tsx` needed different fixes:
+
+1. Resetting `AnnotationCard`'s local `selectedTag`/`note` state when the item being
+   annotated changes — fixed the React-recommended way, `key={item.id}` on the
+   component at both call sites (forces a remount instead of clearing state in an
+   effect), not a lint suppression.
+2. Loading the annotation session from `localStorage` once on mount — a genuine
+   "synchronize with an external, browser-only system" case (this is a statically
+   exported page; `window` is undefined during the build's prerender, so the
+   server-rendered HTML is necessarily the empty "idle" state, and reading real
+   `localStorage` state must happen in an effect AFTER hydration or it would mismatch
+   the prerendered markup). This one keeps a scoped, commented
+   `eslint-disable`/`eslint-enable` block rather than being restructured away, since
+   restructuring it (e.g. a lazy `useState` initializer) would reintroduce a
+   hydration-mismatch bug instead of fixing anything.
+
 ## M3 — brand generated early, `ci:zero-functions` intentionally red until M4/M5 land the remaining routes
 
 `pnpm brand` was run during M3, not M5 (its nominal milestone slot in
