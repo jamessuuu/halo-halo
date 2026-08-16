@@ -5,5 +5,5 @@ export const SITE = {
   authorName: "James Lorenz Santos",
   portfolioUrl: "https://agentjames.vercel.app",
   repoUrl: "https://github.com/jamessuuu/halo-halo",
-  url: "https://halo-halo.vercel.app",
+  url: "https://halo-halo-coral.vercel.app",
 } as const;

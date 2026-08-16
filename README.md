@@ -17,7 +17,7 @@ code-switching tagset (Solorio et al., 2014) and Universal Dependencies' multi-w
 token mechanism. It extends the granularity gap left by TweetTaglish (LREC 2022,
 tweet-level mixing proportion) and Batayan (ACL 2025, sentence-level Taglish sentiment/
 toxicity only) rather than reproducing either. Full lineage credits and the exact
-claims boundary: [`/method`](https://halo-halo.vercel.app/method).
+claims boundary: [`/method`](https://halo-halo-coral.vercel.app/method).
 
 The segmenter is a transparent rule/lexicon baseline — every label the demo produces
 traces, in the UI's rule-trace panel, to one of the rules committed in
@@ -25,16 +25,16 @@ traces, in the UI's rule-trace panel, to one of the rules committed in
 
 ## Try it
 
-- [`/`](https://halo-halo.vercel.app/) — the live demo. Type or paste Taglish; every
+- [`/`](https://halo-halo-coral.vercel.app/) — the live demo. Type or paste Taglish; every
   token gets colored by its tag, intra-word splits expand on click, and clicking any
   token opens its rule trace.
-- [`/method`](https://halo-halo.vercel.app/method) — the tagset, worked examples,
+- [`/method`](https://halo-halo-coral.vercel.app/method) — the tagset, worked examples,
   lineage credits, and the exact claims ceiling.
-- [`/eval`](https://halo-halo.vercel.app/eval) — the current numbers, every one flagged
+- [`/eval`](https://halo-halo-coral.vercel.app/eval) — the current numbers, every one flagged
   `draft-automated`.
-- [`/annotate`](https://halo-halo.vercel.app/annotate) — the keyboard-first annotation
+- [`/annotate`](https://halo-halo-coral.vercel.app/annotate) — the keyboard-first annotation
   workbench: per-item confidence, blind-shuffle test-retest, per-label Cohen's kappa.
-- [`/limitations`](https://halo-halo.vercel.app/limitations) — what this tool cannot
+- [`/limitations`](https://halo-halo-coral.vercel.app/limitations) — what this tool cannot
   know, where every number comes from, what was not measured.
 
 ## Honesty, up front
@@ -82,7 +82,7 @@ repeated runs):
 These numbers measure whether the current rule engine reproduces its own **reviewed**
 v0-set labels (a regression/consistency check across code changes) — not accuracy
 against independently-verified gold, and not inter-annotator agreement. Full framing:
-[`/eval`](https://halo-halo.vercel.app/eval).
+[`/eval`](https://halo-halo-coral.vercel.app/eval).
 
 ## Quickstart
 
@@ -122,7 +122,7 @@ mixing proportion, not token-level), Batayan (sentence-level sentiment/toxicity,
 segmentation task), LinCE (Tagalog-English is not one of its four covered pairs), and
 a ResearchGate listing on a fine-tuned mBERT classifier for the same language pair
 (venue/authorship unverified — see [`docs/PRIOR-ART.md`](docs/PRIOR-ART.md) for the
-full run-down). Full table: [`/method`](https://halo-halo.vercel.app/method).
+full run-down). Full table: [`/method`](https://halo-halo-coral.vercel.app/method).
 
 ## License
 
