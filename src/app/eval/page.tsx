@@ -25,61 +25,67 @@ export default function EvalPage(): React.JSX.Element {
         </p>
 
         <h2>Source</h2>
-        <table>
-          <tbody>
-            <tr><td>Texts</td><td>{report.source.textCount} (original compositions, no scraped content — <a href={`${SITE.repoUrl}/blob/main/eval/v0-set/texts.json`}>eval/v0-set/texts.json</a>)</td></tr>
-            <tr><td>Tokens (leaves)</td><td>{report.source.leafCount}</td></tr>
-            <tr><td>Reviewed overrides applied</td><td>{report.source.overridesApplied} (see <a href={`${SITE.repoUrl}/blob/main/eval/v0-set/reviewed-overrides.json`}>reviewed-overrides.json</a>)</td></tr>
-          </tbody>
-        </table>
+        <div className="overflow-x-auto">
+          <table>
+            <tbody>
+              <tr><td>Texts</td><td>{report.source.textCount} (original compositions, no scraped content — <a href={`${SITE.repoUrl}/blob/main/eval/v0-set/texts.json`}>eval/v0-set/texts.json</a>)</td></tr>
+              <tr><td>Tokens (leaves)</td><td>{report.source.leafCount}</td></tr>
+              <tr><td>Reviewed overrides applied</td><td>{report.source.overridesApplied} (see <a href={`${SITE.repoUrl}/blob/main/eval/v0-set/reviewed-overrides.json`}>reviewed-overrides.json</a>)</td></tr>
+            </tbody>
+          </table>
+        </div>
 
         <h2>Boundary-F1 (primary metric)</h2>
         <p className="text-sm text-ink/70">{report.boundaryF1.classImbalanceCaveat}</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Precision</th>
-              <th>Recall</th>
-              <th>F1</th>
-              <th>n (gold switch points)</th>
-              <th>TP</th>
-              <th>FP</th>
-              <th>FN</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{pct(report.boundaryF1.precision)}</td>
-              <td>{pct(report.boundaryF1.recall)}</td>
-              <td>{pct(report.boundaryF1.f1)}</td>
-              <td>{report.boundaryF1.n}</td>
-              <td>{report.boundaryF1.truePositive}</td>
-              <td>{report.boundaryF1.falsePositive}</td>
-              <td>{report.boundaryF1.falseNegative}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1</th>
+                <th>n (gold switch points)</th>
+                <th>TP</th>
+                <th>FP</th>
+                <th>FN</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{pct(report.boundaryF1.precision)}</td>
+                <td>{pct(report.boundaryF1.recall)}</td>
+                <td>{pct(report.boundaryF1.f1)}</td>
+                <td>{report.boundaryF1.n}</td>
+                <td>{report.boundaryF1.truePositive}</td>
+                <td>{report.boundaryF1.falsePositive}</td>
+                <td>{report.boundaryF1.falseNegative}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h2>Per-label token accuracy (secondary — never pooled)</h2>
         <p className="text-sm text-ink/70">{report.perLabelAccuracyCaveat}</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Tag</th>
-              <th>Support (n)</th>
-              <th>Accuracy</th>
-            </tr>
-          </thead>
-          <tbody>
-            {report.perLabelAccuracy.map((r) => (
-              <tr key={r.tag}>
-                <td className="font-house-mono">{r.tag}</td>
-                <td>{r.support}</td>
-                <td>{pct(r.accuracy)}</td>
+        <div className="overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Tag</th>
+                <th>Support (n)</th>
+                <th>Accuracy</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {report.perLabelAccuracy.map((r) => (
+                <tr key={r.tag}>
+                  <td className="font-house-mono">{r.tag}</td>
+                  <td>{r.support}</td>
+                  <td>{pct(r.accuracy)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         <h2>Confusion matrix (rows = reviewed/gold, columns = predicted)</h2>
         <div className="overflow-x-auto">
