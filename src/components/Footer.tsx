@@ -18,22 +18,22 @@ export function Footer(): React.JSX.Element {
       <div className="mx-auto max-w-5xl flex flex-col gap-4 px-6 py-8 text-sm text-ink/70 sm:flex-row sm:items-center sm:justify-between">
         <Attribution linkClassName="text-ink underline decoration-rule hover:text-amber" />
         <nav aria-label="halo-halo site links" className="flex flex-wrap items-center gap-x-5 gap-y-2 font-house-mono">
-          <Link href="/" prefetch={false} className="hover:text-amber">
+          <Link href="/" prefetch={false} className="inline-flex min-h-6 items-center hover:text-amber">
             demo
           </Link>
-          <Link href="/method" prefetch={false} className="hover:text-amber">
+          <Link href="/method" prefetch={false} className="inline-flex min-h-6 items-center hover:text-amber">
             method
           </Link>
-          <Link href="/eval" prefetch={false} className="hover:text-amber">
+          <Link href="/eval" prefetch={false} className="inline-flex min-h-6 items-center hover:text-amber">
             eval
           </Link>
-          <Link href="/annotate" prefetch={false} className="hover:text-amber">
+          <Link href="/annotate" prefetch={false} className="inline-flex min-h-6 items-center hover:text-amber">
             annotate
           </Link>
-          <Link href="/limitations" prefetch={false} className="hover:text-amber">
+          <Link href="/limitations" prefetch={false} className="inline-flex min-h-6 items-center hover:text-amber">
             limitations
           </Link>
-          <a href={SITE.repoUrl} className="hover:text-amber">
+          <a href={SITE.repoUrl} className="inline-flex min-h-6 items-center hover:text-amber">
             repo ↗
           </a>
         </nav>

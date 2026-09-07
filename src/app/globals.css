@@ -429,3 +429,25 @@ a {
     transform: none;
   }
 }
+
+/* --- The primary nav wraps on a phone instead of scrolling ------------------
+   `.rail-nav` made the nav a single-line horizontal scroll strip below 480px,
+   which left "repo ↗" off-screen at 390px behind a gesture. That was the right
+   call when the wordmark and the nav shared one wrapping row and collided
+   (ui-audit.md 2026-08-28) — but the header has since become flex-col below
+   480px, so the nav owns its row and can wrap without touching anything. Six
+   short links cost one extra 24px line and every destination becomes visible,
+   which beats a scroll strip for a nav.
+
+   Scoped to below 480px on purpose: from 480 to 640 the wordmark and nav ARE
+   back on one row, and wrapping there is what caused the original collision.
+   Unlayered so it wins over the flex-nowrap / overflow-x-auto utilities. */
+@media (max-width: 479px) {
+  .rail-nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    row-gap: 0.15rem;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}

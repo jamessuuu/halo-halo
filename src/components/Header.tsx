@@ -29,22 +29,22 @@ export function Header(): React.JSX.Element {
           // the wordmark/border above at 480px and up.
           className="rail-nav mx-[-4px] flex flex-nowrap items-center gap-x-5 overflow-x-auto whitespace-nowrap px-1 font-house-mono text-sm"
         >
-          <Link href="/" prefetch={false} className="text-ink-2 transition-colors hover:text-amber">
+          <Link href="/" prefetch={false} className="inline-flex min-h-6 items-center text-ink-2 transition-colors hover:text-amber">
             demo
           </Link>
-          <Link href="/method" prefetch={false} className="text-ink-2 transition-colors hover:text-amber">
+          <Link href="/method" prefetch={false} className="inline-flex min-h-6 items-center text-ink-2 transition-colors hover:text-amber">
             method
           </Link>
-          <Link href="/eval" prefetch={false} className="text-ink-2 transition-colors hover:text-amber">
+          <Link href="/eval" prefetch={false} className="inline-flex min-h-6 items-center text-ink-2 transition-colors hover:text-amber">
             eval
           </Link>
-          <Link href="/annotate" prefetch={false} className="text-ink-2 transition-colors hover:text-amber">
+          <Link href="/annotate" prefetch={false} className="inline-flex min-h-6 items-center text-ink-2 transition-colors hover:text-amber">
             annotate
           </Link>
-          <Link href="/limitations" prefetch={false} className="text-ink-2 transition-colors hover:text-amber">
+          <Link href="/limitations" prefetch={false} className="inline-flex min-h-6 items-center text-ink-2 transition-colors hover:text-amber">
             limitations
           </Link>
-          <a href={SITE.repoUrl} className="text-ink-2 transition-colors hover:text-amber">
+          <a href={SITE.repoUrl} className="inline-flex min-h-6 items-center text-ink-2 transition-colors hover:text-amber">
             repo ↗
           </a>
         </nav>
