@@ -118,6 +118,10 @@ a {
   .ambient {
     position: relative;
     isolation: isolate;
+    /* The bloom is inset past this box on purpose; clip contains it. Without
+       this the full-page render measured 437px wide at a 390px viewport,
+       even though the in-viewport scrollWidth read a clean 390. */
+    overflow: clip;
   }
   .ambient::before {
     content: "";
