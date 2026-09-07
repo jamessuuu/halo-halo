@@ -13,7 +13,7 @@ import { TAG_STYLE } from "@/lib/tag-style";
 export function RuleTracePanel({ leaf }: { leaf: Leaf | null }): React.JSX.Element {
   if (!leaf) {
     return (
-      <div aria-live="polite" className="rounded-[var(--radius-brand)] border border-rule bg-white/40 p-4 text-sm text-ink/60">
+      <div aria-live="polite" className="panel p-4 text-sm text-ink-3">
         Click any token above (or press Enter/Space on it) to see exactly which rule
         produced its label.
       </div>
@@ -24,21 +24,21 @@ export function RuleTracePanel({ leaf }: { leaf: Leaf | null }): React.JSX.Eleme
   const style = TAG_STYLE[leaf.tag];
 
   return (
-    <div aria-live="polite" className="rounded-[var(--radius-brand)] border border-rule bg-white/40 p-4">
+    <div aria-live="polite" className="panel p-4">
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <span className="font-house-mono text-lg" style={{ color: style.color }}>
           &ldquo;{leaf.text}&rdquo;
         </span>
-        <span className="font-house-mono text-sm text-ink/70">{style.label}</span>
-        <span className="rounded-[var(--radius-brand)] border border-rule px-1.5 py-0.5 text-xs font-house-mono uppercase tracking-wide text-ink/60">
+        <span className="font-house-mono text-sm text-ink-2">{style.label}</span>
+        <span className="rounded-[var(--radius-brand)] border border-rule px-1.5 py-0.5 text-xs font-house-mono uppercase tracking-wide text-ink-3">
           {leaf.confidence} confidence
         </span>
       </div>
-      <p className="mt-3 text-sm leading-relaxed text-ink/85">{rule.description}</p>
+      <p className="mt-3 text-sm leading-relaxed text-ink-2">{rule.description}</p>
       {leaf.note && (
-        <p className="mt-2 border-l-2 border-amber pl-3 text-sm leading-relaxed text-ink/85">{leaf.note}</p>
+        <p className="mt-2 border-l-2 border-amber pl-3 text-sm leading-relaxed text-ink-2">{leaf.note}</p>
       )}
-      <p className="mt-3 font-house-mono text-xs text-ink/45">
+      <p className="mt-3 font-house-mono text-xs text-ink-3">
         rule id: <code>{rule.id}</code> — src/core/rules.ts
       </p>
     </div>

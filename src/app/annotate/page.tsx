@@ -78,7 +78,7 @@ function AnnotationCard({
   const after = item.sourceText.slice(item.leafEnd);
 
   return (
-    <div className="rounded-[var(--radius-brand)] border border-rule bg-white/50 p-5">
+    <div className="rounded-[var(--radius-brand)] border border-rule bg-sub-2 p-5">
       <p className="font-house-mono text-xs text-ink/50">
         item {index + 1} of {total}
       </p>
@@ -143,7 +143,7 @@ function AnnotationCard({
             onChange={(e) => {
               setNote(e.target.value);
             }}
-            className="mt-1 w-full rounded-[var(--radius-brand)] border border-rule bg-white/60 px-2 py-1 text-sm outline-none focus-visible:border-amber"
+            className="mt-1 w-full rounded-[var(--radius-brand)] border border-rule bg-paper px-2 py-1 text-sm outline-none focus-visible:border-amber"
           />
         </fieldset>
       )}
@@ -320,7 +320,7 @@ export default function AnnotatePage(): React.JSX.Element {
       </p>
 
       {mode === "idle" && (
-        <section className="mt-6 rounded-[var(--radius-brand)] border border-rule bg-white/40 p-5">
+        <section className="mt-6 rounded-[var(--radius-brand)] border border-rule bg-sub-2 p-5">
           <h2 className="font-house-mono text-sm text-ink/70">Choose text to annotate</h2>
           <div className="mt-3 flex flex-wrap gap-2">
             {sourceTexts.slice(0, 6).map((t) => (
@@ -347,7 +347,7 @@ export default function AnnotatePage(): React.JSX.Element {
               setCustomText(e.target.value);
             }}
             rows={3}
-            className="mt-1 w-full rounded-[var(--radius-brand)] border border-rule bg-white/60 p-2 text-sm outline-none focus-visible:border-amber"
+            className="mt-1 w-full rounded-[var(--radius-brand)] border border-rule bg-paper p-2 text-sm outline-none focus-visible:border-amber"
           />
           <button
             type="button"
@@ -369,7 +369,7 @@ export default function AnnotatePage(): React.JSX.Element {
       )}
 
       {mode === "pass1-done" && (
-        <section className="mt-6 rounded-[var(--radius-brand)] border border-rule bg-white/40 p-5">
+        <section className="mt-6 rounded-[var(--radius-brand)] border border-rule bg-sub-2 p-5">
           <h2 className="font-house-mono text-sm text-ink/70">Pass 1 complete — {session.pass1.length} items annotated</h2>
           <p className="mt-2 text-sm text-ink/70">
             Per Section 4.1&apos;s PRIMARY protocol, the reported self-retest kappa requires waiting at least 7 days
@@ -400,7 +400,7 @@ export default function AnnotatePage(): React.JSX.Element {
       )}
 
       {mode === "pass2-done" && (
-        <section className="mt-6 rounded-[var(--radius-brand)] border border-rule bg-white/40 p-5" aria-live="polite">
+        <section className="mt-6 rounded-[var(--radius-brand)] border border-rule bg-sub-2 p-5" aria-live="polite">
           <h2 className="font-house-mono text-sm text-ink/70">Self-test-retest kappa (per label, never pooled)</h2>
           <p className="mt-2 text-sm text-ink/70">
             This measures whether ONE annotator applies their own stated rules consistently to themselves — a floor,

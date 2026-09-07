@@ -38,7 +38,7 @@ function LeafButton({
       }}
       aria-pressed={selected}
       aria-label={`"${leaf.text}", tagged ${style.label}, ${leaf.confidence.toLowerCase()} confidence. Press to open the rule trace.`}
-      className="rounded-[var(--radius-brand)] px-0.5 py-0.5 font-house-mono text-[15px] leading-relaxed transition-colors hover:bg-amber-soft focus-visible:bg-amber-soft"
+      className="rounded-[var(--radius-brand)] px-0.5 py-0.5 font-house-mono text-[17px] leading-relaxed transition-colors hover:bg-amber-soft focus-visible:bg-amber-soft"
       style={{
         color: style.color,
         textDecorationLine: style.decorationStyle === "none" ? "none" : "underline",
@@ -85,7 +85,7 @@ function WordView({
         }}
         aria-expanded={false}
         aria-label={`"${word.text}", ${String(word.leaves.length)} internal parts (${tagList}). Press to expand and see the split.`}
-        className="rounded-[var(--radius-brand)] border border-dashed border-amber px-0.5 py-0.5 font-house-mono text-[15px] leading-relaxed text-ink transition-colors hover:bg-amber-soft focus-visible:bg-amber-soft"
+        className="rounded-[var(--radius-brand)] border border-dashed border-amber px-0.5 py-0.5 font-house-mono text-[17px] leading-relaxed text-ink transition-colors hover:bg-amber-soft focus-visible:bg-amber-soft"
       >
         {word.text}
         <span aria-hidden="true" className="ml-0.5 text-amber">
@@ -112,7 +112,7 @@ function WordView({
         }}
         aria-expanded={true}
         aria-label={`Collapse "${word.text}" back to one unit.`}
-        className="ml-0.5 rounded-[var(--radius-brand)] px-1 text-xs text-ink/50 hover:text-amber focus-visible:text-amber"
+        className="ml-0.5 rounded-[var(--radius-brand)] px-1 text-xs text-ink-3 hover:text-amber focus-visible:text-amber"
       >
         ×
       </button>
@@ -165,7 +165,7 @@ export function TokenView({ result, onSelectLeaf, selectedKey }: TokenViewProps)
   }
 
   return (
-    <div className="whitespace-pre-wrap break-words text-lg leading-loose" lang="en">
+    <div className="whitespace-pre-wrap break-words text-lg leading-[2.1]" lang="en">
       {nodes}
     </div>
   );
